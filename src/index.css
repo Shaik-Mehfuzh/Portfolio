@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: #0b0717;
+    color: #f8fafc;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #0b0717;
+  }
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+.font-code {
+  font-family: var(--font-mono);
+}
+
+/* 
+  Atmospheric Twilight & Sunset Glass Specification
+  Inspired by user's sunset mountain lake and golden mist assets
+*/
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.03);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 8px 32px -8px rgba(15, 7, 30, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255, 215, 165, 0.5) 0%, rgba(244, 114, 182, 0.25) 25%,
+    rgba(192, 132, 252, 0.1) 50%, rgba(56, 189, 248, 0.2) 80%,
+    rgba(255, 215, 165, 0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.liquid-glass-twilight {
+  background: linear-gradient(135deg, rgba(30, 18, 54, 0.65) 0%, rgba(20, 11, 40, 0.75) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 114, 182, 0.2);
+  box-shadow: 0 20px 45px -15px rgba(10, 4, 25, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.liquid-glass-sunset {
+  background: linear-gradient(135deg, rgba(46, 20, 42, 0.65) 0%, rgba(28, 12, 34, 0.8) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(251, 146, 60, 0.25);
+  box-shadow: 0 20px 45px -15px rgba(25, 8, 18, 0.8), inset 0 1px 1px rgba(255, 237, 213, 0.18);
+}
+
+.liquid-glass-alpine {
+  background: linear-gradient(135deg, rgba(13, 35, 41, 0.65) 0%, rgba(10, 24, 30, 0.8) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 20px 45px -15px rgba(4, 18, 22, 0.8), inset 0 1px 1px rgba(207, 250, 254, 0.18);
+}
+
+/* Train bob animation */
+@keyframes train-bob {
+  0%, 100% {
+    transform: scale(1.03) translateY(0);
+  }
+  50% {
+    transform: scale(1.03) translateY(-6px);
+  }
+}
+
+.animate-train-bob {
+  animation: train-bob 3s ease-in-out infinite;
+}
+
+/* 3D Spatial Transforms */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1400 {
+  perspective: 1400px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Luminous Filament Path Animation */
+@keyframes dash-pulse {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dash-pulse {
+  stroke-dasharray: 12 8;
+  animation: dash-pulse 25s linear infinite;
+}
+
+/* Text Clipping Mask Reveals */
+.clip-reveal-container {
+  overflow: hidden;
+}
+
+/* Custom Cursor Touch Guard */
+@media (pointer: coarse) {
+  .custom-pointer-layer {
+    display: none !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0717;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 146, 60, 0.45);
+}
